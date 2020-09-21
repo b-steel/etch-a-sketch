@@ -16,6 +16,7 @@ const defaultColor = '#000000';
 const defaultDrawMode = 'basic';
 const defaultGridSize = 25;
 const drawingBoardSize = getComputedStyle(drawingBoardContainer).getPropertyValue('--main-grid-size');
+const modeOrder = {'Normal': 'Rainbow', 'Rainbow': 'Shading', 'Shading': 'Normal'};
 
 // Variables
 let enableDrawing;
@@ -52,7 +53,11 @@ function drawGrid(numberOfSquares) {
             // Set size and class
             tempReference.style.width = `${gridItemSize}`;
             tempReference.style.height = `${gridItemSize}`;
-            tempReference.classList.add('grid-item');
+            if (isGridOn) {
+                tempReference.classList.add('grid-item');
+            } else {
+                tempReference.classList.add('no-border-grid-item');
+            }
             // Set event listener
             tempReference.addEventListener('mouseover', changeGridtileColor);
 
@@ -65,13 +70,34 @@ function drawGrid(numberOfSquares) {
 function changeGridtileColor(event) {
     if (enableDrawing) {
         switch (drawMode) {
-            case 'rainbow':
+            case 'Rainbow':
+                event.target.style.backgroundColor = randomColor();
+                break;
+            case 'Shading':
+                let op = event.target.style.opacity;
+               
+                if (op === '') {
+                   event.target.style.opacity = '0.1';
+                   event.target.style.backgroundColor = desiredColor;
+                   break;
+                } else if (op < 1) {
+                    event.target.style.opacity = `${Number.parseFloat(op) + 0.1}`;
+                    break;
+                } else {
+                    break;
+                }
+            
+            case 'Normal':
+                event.target.style.backgroundColor = desiredColor;
                 break;
             default: // draw current color
                 event.target.style.backgroundColor = desiredColor;
                 break;
         }
     } else { return; }
+}
+function randomColor(){
+    return '#'+Math.floor(Math.random()*16777215).toString(16);
 }
 function resetGrid() {
     grid = drawGrid(gridSize);
@@ -82,13 +108,13 @@ function toggleDraw() {
 
 function toggleGridOnOff() {
     console.log(grid[0][0].classList);
-   
+
     if (isGridOn) {
         for (let row = 0; row < grid.length; row++) {
             for (let col = 0; col < grid.length; col++) {
                 grid[row][col].classList.remove('grid-item');
                 grid[row][col].classList.add('no-border-grid-item');
-                
+
 
             }
         }
@@ -102,12 +128,22 @@ function toggleGridOnOff() {
     }
     isGridOn = !isGridOn;
 }
+function changeDrawMode() {
+    drawModeInput.innerText = `Mode: ${modeOrder[drawModeInput.innerText.slice(6)]}`;
+    drawMode = drawModeInput.innerText.slice(6);
+    if(drawMode === 'Rainbow') {
+        colorWell.disabled = true;
+    } else {
+        colorWell.disabled = false;
+    }
+}
 
 function startup() {
     desiredColor = defaultColor;
     gridSize = defaultGridSize;
     drawMode = defaultDrawMode;
     colorWell.value = defaultColor;
+    numberOfSquaresInput.value = gridSize;
     enableDrawing = true;
     isGridOn = true;
 
@@ -121,7 +157,7 @@ function startup() {
         gridSize = e.target.value;
         grid = drawGrid(gridSize)
     });
-    drawModeInput.addEventListener('click', x => { return; });
+    drawModeInput.addEventListener('click', changeDrawMode);
     btnToggleGrid.addEventListener('click', toggleGridOnOff);
 
     // Spacebar event listener
