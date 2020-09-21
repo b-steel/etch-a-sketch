@@ -1,0 +1,18 @@
+body {
+    --main-grid-size: 80vw;
+}
+.grid-item {
+    border-color: aqua;
+    border-width: 1px;
+    border-style: solid;
+    float: left;
+    
+}
+* {
+    box-sizing: border-box;
+  }
+.drawing-board {
+    width: var(--main-grid-size);
+    height: var(--main-grid-size);
+    
+}
