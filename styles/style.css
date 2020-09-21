@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     --main-grid-size: 80vw;
 }
@@ -5,14 +9,18 @@ body {
     border-color: aqua;
     border-width: 1px;
     border-style: solid;
-    float: left;
-    
+    float: left;  
 }
-* {
-    box-sizing: border-box;
-  }
+
 .drawing-board {
     width: var(--main-grid-size);
     height: var(--main-grid-size);
     
+}
+
+.no-border-grid-item {
+    border-color: aqua;
+    border-width: 0px;
+    border-style: solid;
+    float: left;  
 }
