@@ -107,6 +107,13 @@ function resetGrid() {
     grid = drawGrid(gridSize);
 }
 function toggleDraw() {
+    let instructions = document.querySelector('.column-2 p');
+   
+    if (enableDrawing) {
+        instructions.innerHTML = ` Press 'd' to <strong>enable</strong> / disable cursor drawing`;
+    } else { instructions.innerHTML = `Press 'd' to enable / <strong>disable</strong> cursor drawing`;
+
+    }
     enableDrawing = !enableDrawing;
 }
 
@@ -118,6 +125,7 @@ function toggleGridOnOff() {
                 grid[row][col].classList.add('no-border-grid-item');
             }
         }
+
     } else {
         for (let row = 0; row < grid.length; row++) {
             for (let col = 0; col < grid.length; col++) {
@@ -160,7 +168,7 @@ function startup() {
     drawModeInput.addEventListener('click', changeDrawMode);
     btnToggleGrid.addEventListener('click', toggleGridOnOff);
 
-    // Spacebar event listener
+    // D Key event listener
     const keyListener = document.addEventListener('keydown', function (e) {
         if (e.key === 'd') {
             toggleDraw();
