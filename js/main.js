@@ -36,7 +36,7 @@ function drawGrid(numberOfSquares) {
     }
 
     // Calculate grid-item sizes
-    let gridItemSize = `${parseInt(drawingBoardSize.slice(0, -2)) / numberOfSquares}vw`
+    let gridItemSize = `${parseInt(drawingBoardSize.slice(0, -2)) / numberOfSquares}vmin`
 
     // Loop through rows and columns and create each grid element
     let gridItems = [];
@@ -49,7 +49,6 @@ function drawGrid(numberOfSquares) {
             // Add to board
             drawingBoardContainer.appendChild(gridItems[row][col]);
             let tempReference = document.getElementById(`row${row}col${col}`);
-            tempReference.style.backgroundColor = 'orange';
             // Set size and class
             tempReference.style.width = `${gridItemSize}`;
             tempReference.style.height = `${gridItemSize}`;
@@ -107,8 +106,6 @@ function toggleDraw() {
 }
 
 function toggleGridOnOff() {
-    console.log(grid[0][0].classList);
-
     if (isGridOn) {
         for (let row = 0; row < grid.length; row++) {
             for (let col = 0; col < grid.length; col++) {

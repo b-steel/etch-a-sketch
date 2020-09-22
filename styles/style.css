@@ -3,26 +3,62 @@
 }
 
 body {
-    --main-grid-size: 80vw;
+    --main-grid-size: 90vmin;
+    background-image: url('/images/graph.jpg');
+
+}
+.column-1{
+    float:left;
+    width: 30%;
+    
+}
+.column-2{
+    float:left;
+    width: 70%;
+    
+}
+.container {
+    float: left;
+    width: calc(90vmax - var(--main-grid-size) - 100px);
+    position: relative;
+    top: 100px;
+
+}
+.container::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+ul {
+    list-style-type: none;
+}
+
+#number-of-grid-squares {
+    width: 40px;
+}
+label, button, input {
+    margin-bottom: 5px;;
 }
 .grid-item {
-    border-color: aqua;
+    border-color: #000000;
+    background-color: #ffffff;
     border-width: 1px;
     border-style: solid;
     float: left;  
-    opacity:2;
+
 }
 
 .drawing-board {
     width: var(--main-grid-size);
     height: var(--main-grid-size);
+    margin: 4vmin 50px 4vmin 50px;
+    float:left;
     
 }
 
 .no-border-grid-item {
-    border-color: aqua;
+    border-color: #000000;
     border-width: 0px;
     border-style: solid;
     float: left;  
-    opacity: 2;
 }

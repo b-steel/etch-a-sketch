@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Etch-A-Sketch :: TOP</title>
+  <title>Etch-Your-Sketch :: TOP</title>
   <meta name="author" content="Ben Steel">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,21 +12,34 @@
 </head>
 
 <body>
-<div class="container" id="main">
-  <div class="controls" id="controls">
-    <label for="number-of-grid-squares"> Number of Grid Elements </label>
-    <input id="number-of-grid-squares" name="number-of-grid-squares" type="number" > 
-    <label for="color-picker">Color</label>
-    <input id="color-picker" name="color-picker" type="color">
-    <button id="draw-mode">Mode: Normal</button>
-    <button id="reset"> Reset</button>
-    <button id="toggle-grid"> Toggle Grid </button>
-  </div>
-  <div id="instructions" > Press D to disable/enable DRAWING</div>
   <div class="drawing-board" id="drawing-board">
-    
+
   </div>
-</div>
+  <div class="container" id="main">
+    <div class="controls column-1" id="controls">
+      <ul>
+        <li> <label for="number-of-grid-squares"> Size </label>
+          <input id="number-of-grid-squares" name="number-of-grid-squares" type="number"></li>
+        <li> <label for="color-picker">Color</label>
+          <input id="color-picker" name="color-picker" type="color">
+        </li>
+        <li> <button id="draw-mode">Mode: Normal</button></li>
+        <li> <button id="reset"> Reset</button>
+        </li>
+        <li> <button id="toggle-grid"> Toggle Grid </button>
+        </li>
+      </ul>
+    </div>
+    <div class="text column-2">
+      <h1 class="title">Etch-Your-Sketch</h1>
+      <h3>Instructions</h3>
+
+        <p> Press 'd' to enable / disable cursor drawing</p>
+      
+    </div>
+
+  </div>
+  
 
 
   <script src="js/main.js"></script>
