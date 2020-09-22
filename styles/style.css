@@ -4,7 +4,7 @@
 
 body {
     --main-grid-size: 90vmin;
-    background-image: url('/images/graph.jpg');
+    background-image: url('../images/graph.jpg');
 
 }
 .column-1{
@@ -53,6 +53,7 @@ label, button, input {
     height: var(--main-grid-size);
     margin: 4vmin 50px 4vmin 50px;
     float:left;
+    background-color: #ffffff;
     
 }
 

@@ -16,7 +16,7 @@ const defaultColor = '#000000';
 const defaultDrawMode = 'basic';
 const defaultGridSize = 25;
 const drawingBoardSize = getComputedStyle(drawingBoardContainer).getPropertyValue('--main-grid-size');
-const modeOrder = {'Normal': 'Rainbow', 'Rainbow': 'Shading', 'Shading': 'Normal'};
+const modeOrder = { 'Normal': 'Rainbow', 'Rainbow': 'Shading', 'Shading': 'Normal' };
 
 // Variables
 let enableDrawing;
@@ -66,7 +66,9 @@ function drawGrid(numberOfSquares) {
     // Set the Grid Container's min-size to be current size
     return gridItems;
 }
+
 function changeGridtileColor(event) {
+
     if (enableDrawing) {
         switch (drawMode) {
             case 'Rainbow':
@@ -74,18 +76,21 @@ function changeGridtileColor(event) {
                 break;
             case 'Shading':
                 let op = event.target.style.opacity;
-               
+
                 if (op === '') {
-                   event.target.style.opacity = '0.1';
-                   event.target.style.backgroundColor = desiredColor;
-                   break;
+                    event.target.style.opacity = '0.1';
+                    event.target.style.backgroundColor = desiredColor;
+                    break;
                 } else if (op < 1) {
                     event.target.style.opacity = `${Number.parseFloat(op) + 0.1}`;
                     break;
                 } else {
+
                     break;
                 }
-            
+
+
+
             case 'Normal':
                 event.target.style.backgroundColor = desiredColor;
                 break;
@@ -95,8 +100,8 @@ function changeGridtileColor(event) {
         }
     } else { return; }
 }
-function randomColor(){
-    return '#'+Math.floor(Math.random()*16777215).toString(16);
+function randomColor() {
+    return '#' + Math.floor(Math.random() * 16777215).toString(16);
 }
 function resetGrid() {
     grid = drawGrid(gridSize);
@@ -111,8 +116,6 @@ function toggleGridOnOff() {
             for (let col = 0; col < grid.length; col++) {
                 grid[row][col].classList.remove('grid-item');
                 grid[row][col].classList.add('no-border-grid-item');
-
-
             }
         }
     } else {
@@ -128,7 +131,7 @@ function toggleGridOnOff() {
 function changeDrawMode() {
     drawModeInput.innerText = `Mode: ${modeOrder[drawModeInput.innerText.slice(6)]}`;
     drawMode = drawModeInput.innerText.slice(6);
-    if(drawMode === 'Rainbow') {
+    if (drawMode === 'Rainbow') {
         colorWell.disabled = true;
     } else {
         colorWell.disabled = false;
